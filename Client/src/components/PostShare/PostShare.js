@@ -16,7 +16,7 @@ const PostShare = () => {
   const[image,setImage]=useState();
   const dispatch =useDispatch();
   const {user}=useSelector((state)=>state.authReducer.authData)
-  const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER
+  const serverPublic="https://startcomserver.azurewebsites.net/images/"
   const[postData,setPostData]=useState({
     img:"",
     desc:"",

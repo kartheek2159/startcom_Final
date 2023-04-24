@@ -25,7 +25,7 @@ const ProfileCard = () => {
 
   const getUser=(id)=>async()=>{
     const {data} = await UserApi.getUser(id);
-    console.log(data)
+    // console.log(data)
     setfl(data.following.length)
     setfo(data.followers.length)
   }
@@ -36,7 +36,7 @@ const ProfileCard = () => {
   )
   
   
-  const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER;
+  const serverPublic='https://startcomserver.azurewebsites.net/images/';
   const ProfilePage=false;
   return (
     <div className='ProfileCard'>

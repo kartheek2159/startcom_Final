@@ -106,9 +106,9 @@ useEffect(()=> {
                   <img
                     src={
                       userData?.coverPicture
-                        ? process.env.REACT_APP_PUBLIC_FOLDER +
+                        ? "https://startcomserver.azurewebsites.net/images/" +
                           userData.profilePicture
-                        : process.env.REACT_APP_PUBLIC_FOLDER +
+                        : "https://startcomserver.azurewebsites.net/images/" +
                           "defaultProfile.png"
                     }
                     alt="Profile"

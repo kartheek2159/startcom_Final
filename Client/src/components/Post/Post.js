@@ -12,8 +12,8 @@ import { getTimelinePosts } from '../../actions/postAction'
 import {deletePost} from "../../API/postRequest";
 const Post = ({data}) => {
     const {user}=useSelector((state)=>state.authReducer.authData)
-    console.log(user);
-    console.log(data);
+    // console.log(user);
+    // console.log(data);
     const [liked,setLiked]=useState(data.likes.includes(user._id))
     const [likes,setLikes]=useState(data.likes.length)
     const [modalOpened,setModalOpened]=useState(false);
@@ -25,27 +25,28 @@ const Post = ({data}) => {
     // console.log(user._id)
     // console.log(data)
     // console.log(user)
-    const likehandler=()=>{
+    const likehandler= async ()=>{
         // if(likestate===false){
         //     setlikestate(true)
         // }
         // else{
         //     setlikestate(false)
-        // }
+        // }    
         setLiked(!liked)
-        likePost(data._id,user._id)
-        
+        await likePost(data._id,user._id)
+        alert('Post Liked');
         liked?setLikes((prev)=>prev-1):setLikes((prev)=>prev+1)
         window.location.reload();
+
     }
-    const Delposthandler=()=>{
-        deletePost(data._id,user._id);
-       alert("Post Deleted");
+    const Delposthandler= async ()=>{
+        await deletePost(data._id,user._id);
+        alert("Post Deleted");
        window.location.reload();
     }
   return (
    <div className='Post'>
-    <img src={data.image?process.env.REACT_APP_PUBLIC_FOLDER+data.image:""} alt=""/>
+    <img src={data.image?"https://startcomserver.azurewebsites.net/images/"+data.image:""} alt=""/>
     <div className='PostReact'>
         <div className='li' onClick={()=>likehandler()}>
         {liked?<BsHeartFill style={{color:'green',height:'30px',width:'30px'}}/>:<BsHeart style={{color:'green',height:'30px',width:'30px'}}/>}

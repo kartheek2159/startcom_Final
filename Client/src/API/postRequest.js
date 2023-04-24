@@ -11,6 +11,6 @@ API.interceptors.request.use((req) => {
     return req;
   });
 
-export const getTimelinePosts= (id)=> API.get(`/posts/${id}/timeline`);
-export const likePost=(id, userId)=>API.put(`posts/${id}/like`, {userId: userId})
-export const deletePost=(id, userId)=>  API.delete(`posts/${id}`, { data: {userId: userId} })
+export const getTimelinePosts= async (id)=> await API.get(`posts/${id}/timeline`);
+export const likePost= async (id, userId)=> await API.put(`posts/${id}/like`, {userId: userId})
+export const deletePost= async (id, userId)=> await API.delete(`posts/${id}`, { data: {userId: userId} })

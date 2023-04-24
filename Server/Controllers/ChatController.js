@@ -1,9 +1,9 @@
 import ChatRepository from "../DDD/ChatRepository.js";
 
-const ChatRepo=new ChatRepository();
+const ChatRepo = new ChatRepository();
 
 export const createChat = async (req, res) => {
-  const newChat = await ChatRepo.create_chat(req.body)
+  const newChat = ChatRepo.create_chat(req.body)
   try {
     const result = await newChat.save();
     res.status(200).json(result);

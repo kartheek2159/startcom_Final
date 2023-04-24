@@ -517,7 +517,7 @@ const accessLogStream = fs.createWriteStream(accessLogPath, { flags: 'a' });
 // Set up the morgan middleware to use the writable stream
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.static('public'))
-app.use('/images',express.static("images"))
+app.use('/images', express.static("images"))
 
 
 //...................middleware.......................//

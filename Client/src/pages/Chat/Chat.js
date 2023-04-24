@@ -14,7 +14,7 @@ const Chat = () => {
   const dispatch = useDispatch();
   const socket = useRef();
   const { user } = useSelector((state) => state.authReducer.authData);
-  console.log(user)
+  // console.log(user)
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -25,6 +25,7 @@ const Chat = () => {
     const getChats = async () => {
       try {
         const { data } = await userChats(user._id);
+        console.log(data);
         setChats(data);
         // console.log(user._id)
         // console.log(user._id)

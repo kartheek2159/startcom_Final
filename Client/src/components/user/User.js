@@ -1,24 +1,27 @@
 import React,{useState} from 'react'
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createChat } from '../../actions/chatAction'
 import { followUser ,unfollowUser} from '../../actions/userAction'
 
 const User = ({person}) => {
-    const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER
+    const serverPublic="https://startcomserver.azurewebsites.net/images/"
     const { user } = useSelector((state) => state.authReducer.authData);
     // console.log(user)
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const [following, setFollowing] = useState(
       person.followers.includes(user._id)
     );
     // console.log(person.followers.includes(user._id))
-    console.log(person)
-    const handleFollow = (e) => {
+    // console.log(person)
+    const handleFollow = async (e) => {
+      console.log(person._id, user._id);
       if (following) {
-        dispatch(unfollowUser(person._id, user));
+        // dispatch({type: "UNFOLLOW_USER", data: person._id})
+        await unfollowUser(person._id, user);
       } else {
-        dispatch(followUser(person._id, user));
-        dispatch(createChat(person._id, user._id));
+        dispatch({type: "FOLLOW_USER", data: person._id})
+        await followUser(person._id, user);
+        await createChat(person._id, user._id)
       }
       setFollowing((prev) => !prev);
       

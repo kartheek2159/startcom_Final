@@ -8,7 +8,7 @@ const SingleConvo = (userData,online) => {
         <div>
           {online && <div className="online-dot"></div>}
           <img
-            src={userData.person?.profilePicture? process.env.REACT_APP_PUBLIC_FOLDER + userData.person.profilePicture : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"}
+            src={userData.person?.profilePicture? "https://startcomserver.azurewebsites.net/images/" + userData.person.profilePicture : "https://startcomserver.azurewebsites.net/images/" + "defaultProfile.png"}
             alt="Profile"
             className="followerImage"
             style={{ width: "50px", height: "50px" }}

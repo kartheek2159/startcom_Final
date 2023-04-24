@@ -8,11 +8,11 @@ import client from '../utils/redis.js'
 export const getAllUser=async(req,res)=>{
     try {
       const cached_data= await client.get("users");
-      if(cached_data){
-        console.log("Data is coming from redis")
-        res.status(200).json(JSON.parse(cached_data))
-      }
-      else{
+      // if(cached_data){
+      //   console.log("Data is coming from redis")
+      //   res.status(200).json(JSON.parse(cached_data))
+      // }
+      // else{
 
         let users=await UserModel.find();
 
@@ -20,9 +20,9 @@ export const getAllUser=async(req,res)=>{
             const {password,...otherDetails}=user._doc
             return otherDetails;
         })
-        client.set("users",JSON.stringify(users));
+        // client.set("users",JSON.stringify(users));
         res.status(200).json(users)
-      }
+      // }x
     } catch (error) {
         res.status(500).json(error)
     }
@@ -51,7 +51,7 @@ export const updateUser = async (req, res) => {
   const id = req.params.id;
   console.log("Data Received", req.body)
   const { _id, currentUserAdmin, password } = req.body;
-  
+  client.del('users');
   if (id === _id) {
     try {
       // if we also have to update password then password will be bcrypted again
@@ -84,6 +84,7 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser=async(req,res)=>{
     const id=req.params.id;
+    client.del('users');
     console.log(id)
     const {currentUserId,currentUserAdminStatus}=req.body;
     console.log(currentUserAdminStatus)
@@ -104,7 +105,7 @@ export const deleteUser=async(req,res)=>{
 export const followUser = async (req, res) => {
   const id = req.params.id;
   const { _id } = req.body;
-  
+  client.del('users');
   if (_id == id) {
     res.status(403).json("Action Forbidden");
   } else {
@@ -131,7 +132,7 @@ export const followUser = async (req, res) => {
 export const unfollowUser = async (req, res) => {
   const id = req.params.id;
   const { _id } = req.body;
-
+  client.del('users');
   if(_id == id)
   {
     res.status(403).json("Action Forbidden")
