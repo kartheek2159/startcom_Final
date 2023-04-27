@@ -2840,3 +2840,7 @@
 ::1 - - [24/Apr/2023:21:12:34 +0000] "GET /images/1680524575349demopic.jpg HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 ::1 - - [24/Apr/2023:21:12:34 +0000] "GET /images/1682369491582flutter1.jpg HTTP/1.1" 404 171 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 ::1 - - [24/Apr/2023:21:12:35 +0000] "GET /images/defaultProfile.png HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Apr/2023:18:38:07 +0000] "GET /user HTTP/1.1" 200 2492 "-" "node-superagent/3.8.3"
+::ffff:127.0.0.1 - - [27/Apr/2023:18:38:07 +0000] "POST /auth/login HTTP/1.1" 200 705 "-" "node-superagent/3.8.3"
+::ffff:127.0.0.1 - - [27/Apr/2023:18:38:46 +0000] "GET /user HTTP/1.1" 200 2492 "-" "node-superagent/3.8.3"
+::ffff:127.0.0.1 - - [27/Apr/2023:18:38:46 +0000] "POST /auth/login HTTP/1.1" 200 705 "-" "node-superagent/3.8.3"

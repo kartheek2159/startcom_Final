@@ -5,28 +5,26 @@ import client from '../utils/redis.js'
 
 //get all users
 
-export const getAllUser=async(req,res)=>{
-    try {
-      const cached_data= await client.get("users");
-      // if(cached_data){
-      //   console.log("Data is coming from redis")
-      //   res.status(200).json(JSON.parse(cached_data))
-      // }
-      // else{
+export const getAllUser = async (req, res) => {
+  try {
+    const cached_data = await client.get("users");
+    if (cached_data) {
+      console.log("Data is coming from redis");
+      res.status(200).json(JSON.parse(cached_data));
+    } else {
+      let users = await UserModel.find();
 
-        let users=await UserModel.find();
-
-        users=users.map((user)=>{
-            const {password,...otherDetails}=user._doc
-            return otherDetails;
-        })
-        // client.set("users",JSON.stringify(users));
-        res.status(200).json(users)
-      // }x
-    } catch (error) {
-        res.status(500).json(error)
+      users = users.map((user) => {
+        const { password, ...otherDetails } = user._doc;
+        return otherDetails;
+      });
+      client.set("users", JSON.stringify(users));
+      res.status(200).json(users);
     }
-}
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 // Get User
 export const getUser=async(req,res)=>{

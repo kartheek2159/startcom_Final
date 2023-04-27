@@ -543,3 +543,5 @@ app.use('/posts',PostRoute)
 app.use('/upload',UploadRoute)
 app.use('/chat',ChatRoute)
 app.use('/message', MessageRoute)
+
+export default app;
