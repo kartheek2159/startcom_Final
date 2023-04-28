@@ -67,7 +67,7 @@ const LogoSearch = () => {
       <div className="Search">
         <input
           type="text"
-          placeholder="Search User"
+          placeholder="Search for user"
           value={searchQuery}
           onChange={handleSearch}
         />
